@@ -147,3 +147,30 @@ class ModelVisualization:
         plt.title('Confusion Matrix', fontsize=18)
         plt.show()
         return self.confusion_matrix
+
+    def metric_precision(self):
+        acc = {}
+        for i in range(len(self.data.label_names)):
+            acc[self.data.label_names[i]] = self.confusion_matrix[i][i] / sum(self.confusion_matrix[:, i])
+        return pd.DataFrame({'class': acc.keys(), 'precision': acc.values()})
+
+    def metric_recall(self):
+        recall = {}
+        for i in range(len(self.data.label_names)):
+            recall[i] = self.confusion_matrix[i][i] / sum(self.confusion_matrix[i, :])
+        return pd.DataFrame({'class': recall.keys(), 'recall': recall.values()})
+
+    def metric_f1(self):
+        f1 = {}
+        for i in range(len(self.data.label_names)):
+            f1[i] = 2 * (self.confusion_matrix[i, i] / sum(self.confusion_matrix[:, i])) \
+                    * (self.confusion_matrix[i, i] / sum(self.confusion_matrix[i, :])) / (
+                            (self.confusion_matrix[i, i] / sum(self.confusion_matrix[:, i]))
+                            + (self.confusion_matrix[i, i] / sum(self.confusion_matrix[i, :])))
+        return pd.DataFrame({'class': f1.keys(), 'F1-score': f1.values()})
+
+    def metrics(self):
+        accurancy = self.metric_precision()
+        recall = self.metric_recall()
+        f1 = self.metric_f1()
+        return pd.concat([accurancy, recall['recall'], f1['F1-score']], axis=1, join='inner')
