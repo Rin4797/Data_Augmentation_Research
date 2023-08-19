@@ -136,6 +136,7 @@ class ModelVisualization:
 
     def draw_confusion_matrix(self):
         self.confusion_matrix = confusion_matrix(self.data.y_test, self.predictions)
+        self.confusion_matrix = self.confusion_matrix / self.confusion_matrix.astype(np.float).sum(axis=1)  # normalize
         fig, ax = plt.subplots(figsize=(7.5, 7.5))
         ax.matshow(self.confusion_matrix, cmap=plt.cm.Blues, alpha=0.3)
         for i in range(self.confusion_matrix.shape[0]):
