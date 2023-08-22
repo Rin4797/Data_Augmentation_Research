@@ -141,7 +141,7 @@ class ModelVisualization:
         ax.matshow(self.confusion_matrix, cmap=plt.cm.Blues, alpha=0.3)
         for i in range(self.confusion_matrix.shape[0]):
             for j in range(self.confusion_matrix.shape[1]):
-                ax.text(x=j, y=i, s=self.confusion_matrix[i, j], va='center', ha='center', size='xx-large')
+                ax.text(x=j, y=i, s=self.confusion_matrix[i, j], va='center', ha='center', size='large')
 
         plt.xlabel('Predictions', fontsize=18)
         plt.ylabel('Actuals', fontsize=18)
