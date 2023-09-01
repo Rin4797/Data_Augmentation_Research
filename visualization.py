@@ -43,6 +43,14 @@ class DataVisualization:
 
         self.batches_analysis = None
 
+    def __add__(self, other):
+        return DataVisualization(self.label_names, np.concatenate((self.x_train, other.x_train), axis=0),
+                                 np.concatenate((self.y_train, other.y_train), axis=0),
+                                 np.concatenate((self.x_test, other.x_test), axis=0),
+                                 np.concatenate((self.y_test, other.y_test), axis=0),
+                                 np.concatenate((self.x_val, other.x_val), axis=0),
+                                 np.concatenate((self.y_val, other.y_val), axis=0))
+
     def shuffle_data(self):
         self.x_train, self.y_train = shuffle(self.x_train, self.y_train)
         self.x_test, self.y_test = shuffle(self.x_test, self.y_test)
