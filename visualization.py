@@ -25,7 +25,9 @@ def draw_dataframe(df, title):
 
 class DataVisualization:
 
-    def __init__(self, label_names, x_train, y_train, x_test, y_test, x_val=None, y_val=None):
+    def __init__(self, label_names, x_train, y_train, x_test, y_test, x_val=None, y_val=None,
+                 y_vect_train=None, y_vect_test=None, y_vect_val=None,
+                 x_image_train=None, x_image_test=None, x_image_val=None):
         self.label_names = label_names
         self.x_train = x_train
         self.x_test = x_test
@@ -34,12 +36,12 @@ class DataVisualization:
         self.x_val = x_val
         self.y_val = y_val
 
-        self.y_vect_train = None
-        self.y_vect_test = None
-        self.y_vect_val = None
-        self.x_image_train = None
-        self.x_image_test = None
-        self.x_image_val = None
+        self.y_vect_train = y_vect_train
+        self.y_vect_test = y_vect_test
+        self.y_vect_val = y_vect_val
+        self.x_image_train = x_image_train
+        self.x_image_test = x_image_test
+        self.x_image_val = x_image_val
 
         self.batches_analysis = None
 
@@ -49,7 +51,14 @@ class DataVisualization:
                                  np.concatenate((self.x_test, other.x_test), axis=0),
                                  np.concatenate((self.y_test, other.y_test), axis=0),
                                  np.concatenate((self.x_val, other.x_val), axis=0),
-                                 np.concatenate((self.y_val, other.y_val), axis=0))
+                                 np.concatenate((self.y_val, other.y_val), axis=0),
+                                 np.concatenate((self.y_vect_train, other.y_vect_train), axis=0),
+                                 np.concatenate((self.y_vect_test, other.y_vect_test), axis=0),
+                                 np.concatenate((self.y_vect_val, other.y_vect_val), axis=0),
+                                 np.concatenate((self.x_image_train, other.x_image_train), axis=0),
+                                 np.concatenate((self.x_image_test, other.x_image_test), axis=0),
+                                 np.concatenate((self.x_image_val, other.x_image_val), axis=0),)
+
 
     def shuffle_data(self):
         self.x_train, self.y_train = shuffle(self.x_train, self.y_train)
