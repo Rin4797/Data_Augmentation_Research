@@ -25,7 +25,7 @@ def draw_dataframe(df, title):
 
 class DataVisualization:
 
-    def __init__(self, label_names, x_train, y_train, x_test, y_test, x_val=None, y_val=None,
+    def __init__(self, label_names, x_train, y_train, x_test, y_test, x_val=np.zeros((0, 3072)), y_val=np.zeros((0, )),
                  y_vect_train=None, y_vect_test=None, y_vect_val=None,
                  x_image_train=None, x_image_test=None, x_image_val=None):
         self.label_names = label_names
