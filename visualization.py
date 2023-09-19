@@ -65,7 +65,9 @@ class DataVisualization:
         self.x_train, self.y_train = shuffle(self.x_train, self.y_train)
         self.x_test, self.y_test = shuffle(self.x_test, self.y_test)
 
-    def make_val(self, val_size):
+    def make_val(self, val_size=None):
+        if val_size is None:
+            val_size = int(self.x_train.shape[0] * 0.2)
         self.x_val = self.x_train[-val_size:]
         self.y_val = self.y_train[-val_size:]
         self.x_train = self.x_train[:-val_size]
