@@ -123,6 +123,9 @@ class ModelVisualization:
         self.history = self.model.fit(self.data.x_image_train, self.data.y_vect_train, batch_size=64, epochs=epochs,
                                       validation_data=(self.data.x_image_val, self.data.y_vect_val))
 
+    def get_history(self):
+        return self.history.history
+
     def draw_model_plot(self):
         acc = self.history.history['accuracy']
         val_acc = self.history.history['val_accuracy']
@@ -144,11 +147,13 @@ class ModelVisualization:
         plt.legend()
 
         plt.show()
+        return plt
 
     def draw_model_results(self):
         loss, accuracy = self.model.evaluate(self.data.x_image_test, self.data.y_vect_test)
         print("Accuracy for test data : ", accuracy)
         print("Loss for test data : ", loss)
+        return loss, accuracy
 
     def make_predictions(self):
         self.predictions = self.model.predict(self.data.x_image_test, batch_size=64, verbose=1)
