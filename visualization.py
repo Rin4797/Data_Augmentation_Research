@@ -37,6 +37,9 @@ class DataVisualization:
         self.x_val = x_val
         self.y_val = y_val
 
+        self.image_height = self.x_train.shape[1]
+        self.image_width = self.x_train.shape[2]
+
         self.y_vect_train = y_vect_train
         self.y_vect_test = y_vect_test
         self.y_vect_val = y_vect_val
@@ -75,7 +78,7 @@ class DataVisualization:
 
     def make_data(self):
         def image_format(image_data):
-            return np.transpose(image_data.reshape(32, 32, 3, order='F'), axes=[1, 0, 2])
+            return np.transpose(image_data.reshape(self.image_height, self.image_width, 3, order='F'), axes=[1, 0, 2])
 
         self.y_vect_train = tf.keras.utils.to_categorical(self.y_train)
         self.y_vect_test = tf.keras.utils.to_categorical(self.y_test)
