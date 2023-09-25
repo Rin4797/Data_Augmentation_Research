@@ -28,7 +28,7 @@ class DataVisualization:
     def __init__(self, label_names, x_train, y_train, x_test, y_test, x_val=np.zeros((0, 3072)), y_val=np.zeros((0, )),
                  y_vect_train=np.zeros((0, 10)), y_vect_test=np.zeros((0, 10)), y_vect_val=np.zeros((0, 10)),
                  x_image_train=np.zeros((0, 32, 32, 3)), x_image_test=np.zeros((0, 32, 32, 3)),
-                 x_image_val=np.zeros((0, 32, 32, 3))):
+                 x_image_val=np.zeros((0, 32, 32, 3)), image_shape=(32, 32)):
         self.label_names = label_names
         self.x_train = x_train
         self.x_test = x_test
@@ -37,8 +37,8 @@ class DataVisualization:
         self.x_val = x_val
         self.y_val = y_val
 
-        self.image_height = self.x_train.shape[1]
-        self.image_width = self.x_train.shape[2]
+        self.image_height = image_shape[0]
+        self.image_width = image_shape[1]
 
         self.y_vect_train = y_vect_train
         self.y_vect_test = y_vect_test
