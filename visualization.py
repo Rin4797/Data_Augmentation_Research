@@ -78,7 +78,7 @@ class DataVisualization:
 
     def make_data(self):
         def image_format(image_data):
-            return np.transpose(image_data.reshape(self.image_height, self.image_width, 3, order='F'), axes=[1, 0, 2])
+            return (np.transpose(image_data.reshape(3, self.image_width, self.image_height, order='F'), axes=[2,1,0]))
 
         self.y_vect_train = tf.keras.utils.to_categorical(self.y_train)
         self.y_vect_test = tf.keras.utils.to_categorical(self.y_test)
